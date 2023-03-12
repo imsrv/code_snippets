@@ -18,6 +18,7 @@ Route::get('/also', function () {
     return view('welcome');
 });
 Add the file web.config in public dir and paste the rules:
+#################################################
 
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
@@ -39,4 +40,24 @@ Add the file web.config in public dir and paste the rules:
         </rules>
         </rewrite>
     </system.webServer>
+</configuration>
+###################################################
+
+# Add web.config file to your azure directory. Add the code below into it.
+
+<configuration>
+<system.webServer>
+    <rewrite>
+      <rules>
+        <rule name="Main Rule" stopProcessing="true">
+                <match url=".*" />
+                <conditions logicalGrouping="MatchAll">
+                    <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
+                    <add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
+                </conditions>
+                <action type="Rewrite" url="/" />
+            </rule>
+        </rules>
+    </rewrite>
+</system.webServer>
 </configuration>
