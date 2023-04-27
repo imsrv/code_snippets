@@ -1,8 +1,0 @@
-// HTACCESS TEMPLATE for Reactjs other js based projects
-// save file at the project location with name ".htaccess" & add the following code
-
-
-Options -MultiViews
-RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^ index.html [QSA,L]
