@@ -1,0 +1,17 @@
+<?php
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+
+ $validator = Validator::make($request->all(),[
+			'id' => 'required|integer',
+			'name' => 'required|string'
+		]);
+		
+		if($validator->fails()){
+			return response()->json([
+				"status" => "002",
+				"message" => $validator->errors()->first(),
+				"errors" => $validator->errors()
+			]);
+		}
+    
